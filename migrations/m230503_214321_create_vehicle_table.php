@@ -15,7 +15,9 @@ class m230503_214321_create_vehicle_table extends Migration
         $this->createTable('{{%vehicle}}', [
             'id' => $this->primaryKey(),
             'name' => $this->string()->notNull(),
-            'brand' => $this->string()->notNull()
+            'brand' => $this->string()->notNull(),
+            'created_at' => $this->integer()->notNull(),
+            'updated_at' => $this->integer(),
         ]);
 
         $this->createIndex(
