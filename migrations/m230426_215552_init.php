@@ -1,5 +1,6 @@
 <?php
 
+use app\models\enums\UserStatus;
 use yii\db\Migration;
 
 /**
@@ -14,6 +15,7 @@ class m230426_215552_init extends Migration
          $tableOptions = 'CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE=InnoDB';
       }
 
+      // Create user table
       $this->createTable('{{%user}}', [
          'id' => $this->primaryKey(),
          'username' => $this->string()->notNull()->unique(),
@@ -24,8 +26,19 @@ class m230426_215552_init extends Migration
 
          'status' => $this->smallInteger()->notNull()->defaultValue(10),
          'created_at' => $this->integer()->notNull(),
-         'updated_at' => $this->integer()->notNull(),
+         'updated_at' => $this->integer(),
       ], $tableOptions);
+
+      // Create admin user
+       $this->insert('{{%user}}', [
+          'username' => 'admin',
+          'auth_key' => Yii::$app->security->generateRandomString(),
+          'password_hash' => Yii::$app->security->generatePasswordHash('password1234'),
+          'password_reset_token' => Yii::$app->security->generateRandomString(),
+          'email' => 'admin@fleeter.com',
+          'status' => UserStatus::ACTIVE->value,
+          'created_at' => time(),
+       ]);
    }
 
    public function down()
