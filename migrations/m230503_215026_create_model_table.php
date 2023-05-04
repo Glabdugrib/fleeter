@@ -15,13 +15,24 @@ class m230503_215026_create_model_table extends Migration
         $this->createTable('{{%model}}', [
             'id' => $this->primaryKey(),
             'name' => $this->string()->notNull(),
-            'vehicle_id' => $this->integer()->notNull()
+            'vehicle_id' => $this->integer()->notNull(),
+            'created_at' => $this->integer()->notNull(),
+            'updated_at' => $this->integer(),
         ]);
 
         $this->createIndex(
             '{{idx-model-vehicle_id}}',
             '{{%model}}',
             'vehicle_id'
+        );
+
+        $this->addForeignKey(
+            '{{fk-model-vehicle_id}}',
+            'model',
+            'vehicle_id',
+            'vehicle',
+            'id',
+            'CASCADE'
         );
     }
 
@@ -30,6 +41,11 @@ class m230503_215026_create_model_table extends Migration
      */
     public function safeDown()
     {
+        $this->dropForeignKey(
+            '{{fk-model-vehicle_id}}',
+            'model'
+        );
+
         $this->dropIndex(
             '{{idx-model-vehicle_id}}',
             '{{%model}}'
