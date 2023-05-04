@@ -8,7 +8,7 @@ enum UserStatus: int
     case ACTIVE = 2;
     case DELETED = 3;
 
-    public function label(): string
+    public function getDescription(): string
     {
         return match ($this) {
             UserStatus::INACTIVE => 'Inactive',
