@@ -7,12 +7,12 @@ use Yii;
 /**
  * This is the model class for table "customer".
  *
- * @property int        $id
- * @property string     $name
- * @property int        $group
- * @property string     $currency
- * @property int        $created_at
- * @property int|null   $updated_at
+ * @property int    $id
+ * @property string $name
+ * @property int    $region
+ * @property string $currency
+ * @property int    $created_at
+ * @property int    $updated_at
  */
 class Customer extends \yii\db\ActiveRecord
 {
@@ -30,8 +30,8 @@ class Customer extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'group', 'currency', 'created_at'], 'required'],
-            [['group', 'created_at', 'updated_at'], 'integer'],
+            [['name', 'region', 'currency'], 'required'],
+            [['region'], 'integer'],
             [['name', 'currency'], 'string', 'max' => 255],
         ];
     }
@@ -44,7 +44,7 @@ class Customer extends \yii\db\ActiveRecord
         return [
             'id' => Yii::t('app', 'ID'),
             'name' => Yii::t('app', 'Name'),
-            'group' => Yii::t('app', 'Group'),
+            'region' => Yii::t('app', 'Region'),
             'currency' => Yii::t('app', 'Currency'),
             'created_at' => Yii::t('app', 'Created At'),
             'updated_at' => Yii::t('app', 'Updated At'),

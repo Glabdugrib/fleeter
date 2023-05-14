@@ -15,10 +15,10 @@ class m230504_202741_create_customer_table extends Migration
         $this->createTable('{{%customer}}', [
             'id' => $this->primaryKey(),
             'name' => $this->string()->notNull(),
-            'group' => $this->integer()->notNull(),
+            'region' => $this->integer()->notNull(),
             'currency' => $this->string()->notNull(),
             'created_at' => $this->integer()->notNull(),
-            'updated_at' => $this->integer(),
+            'updated_at' => $this->integer()->notNull(),
         ]);
 
         $this->createIndex(
