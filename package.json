@@ -1,0 +1,27 @@
+{
+  "name": "fleeter",
+  "version": "1.0.0",
+  "description": "Fleeter: the B2B cars ecommerce",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "serve": "php yii serve",
+    "build": "npx tailwindcss -i ./assets/css/tailwind.css -o ./web/css/tailwind.min.css --minify",
+    "watch": "npx tailwindcss -i ./assets/css/tailwind.css -o ./web/css/tailwind.min.css --minify --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Glabdugrib/fleeter.git"
+  },
+  "author": "Simone Sada",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Glabdugrib/fleeter/issues"
+  },
+  "homepage": "https://github.com/Glabdugrib/fleeter#readme",
+  "dependencies": {
+    "tailwindcss": "^3.3.2"
+  }
+}
