@@ -9,7 +9,7 @@ use yii\bootstrap5\Breadcrumbs;
 use yii\bootstrap5\Html;
 
 AppAsset::register($this);
-TablerAsset::register($this);
+/*TablerAsset::register($this);*/
 
 $this->registerCsrfMetaTags();
 $this->registerMetaTag(['charset' => Yii::$app->charset], 'charset');
@@ -24,35 +24,42 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
 <html lang="<?= Yii::$app->language ?>" class="h-100">
 <head>
     <title><?= Html::encode($this->title) ?></title>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <?php $this->head() ?>
 </head>
 
-<body class="theme-light" style="" cz-shortcut-listen="true">
+<body class="min-h-screen bg-gray-100 text-gray-900 overflow-y-auto dark:text-gray-100 dark:bg-gray-900" cz-shortcut-listen="true" x-data="{ sidebarIsOpen: false }">
 <?php $this->beginBody() ?>
 
-<div class="page">
+<div id="app-layout" class="flex h-full w-full relative overflow-x-clip bg-amber-100">
 
     <!-- Sidebar -->
     <?= $this->render('//layouts/_sidebar') ?>
 
-    <div class="page-wrapper">
+    <div id="page" class="w-screen min-h-screen lg:pl-[var(--collapsed-sidebar-width)] grow bg-gray-50" x-bind:class="sidebarIsOpen ? 'lg:pl-[var(--sidebar-width)]' : 'lg:pl-[var(--collapsed-sidebar-width)]'">
+
+    </div>
+
+
+<!--    <div class="page">-->
+<!--        <div id="menu" :class="isOpen && 'open'" @click.outside="isOpen = false">
+            <button @click="isOpen = ! isOpen">Click me</button>
+        </div>-->
 
         <!-- Page header -->
-        <?= $this->render('//layouts/_header') ?>
+        <?php /*= $this->render('//layouts/_header') */?>
 
         <!-- Page body -->
-        <main class="page-body mt-5">
-            <div class="container-xl">
-                <?php if (!empty($this->params['breadcrumbs'])): ?>
-                    <?= Breadcrumbs::widget(['links' => $this->params['breadcrumbs']]) ?>
-                <?php endif ?>
-                <?= $content ?>
-            </div>
-        </main>
+<!--        <main>
+            <?php /*if (!empty($this->params['breadcrumbs'])): */?>
+                <?php /*= Breadcrumbs::widget(['links' => $this->params['breadcrumbs']]) */?>
+            <?php /*endif */?>
+            <?php /*= $content */?>
+        </main>-->
 
         <!-- Footer -->
-        <?= $this->render('//layouts/_footer') ?>
-    </div>
+        <?php /*= $this->render('//layouts/_footer') */?>
+<!--    </div>-->
 </div>
 
 <?php $this->endBody() ?>
